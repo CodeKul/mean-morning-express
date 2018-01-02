@@ -6,3 +6,19 @@ export default express
   .post('/', controller.create)
   .get('/', controller.all)
   .get('/:id', controller.byId);
+
+  
+  createCart() {
+
+  }
+  cart(id) {
+
+  }
+
+  checkout() {
+
+  }
+
+  addItemToCart(item, cartId) {
+
+  }

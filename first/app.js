@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express()
 let logs = Array()
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
@@ -45,6 +46,7 @@ app.post(
     '/calcv2',
     (req, res) => {
         //console.log(req.body)
+
         let custRes = {}
         if (req.body.operation === '+') {
             custRes = {
@@ -69,6 +71,39 @@ app.post(
     }
 )
 
+app.get(
+    `/rvws`,
+    (req, res) => {
+
+        let rvws = [];
+        rvws.push({
+            strs: 1,
+            rvr: 'xyz',
+            rv: 'its good',
+            rvDt: '12-8-1996'
+        });
+        rvws.push({
+            strs: 3,
+            rvr: 'pqr',
+            rv: 'its really good',
+            rvDt: '12-9-1999'
+        });
+        rvws.push({
+            strs: 2,
+            rvr: 'abc',
+            rv: 'its fantastic',
+            rvDt: '1-9-1999'
+        });
+        rvws.push({
+            strs: 5,
+            rvr: 'uvw',
+            rv: 'its nice',
+            rvDt: '10-12-1999'
+        });
+
+        res.json(rvws)
+    }
+)
 app.listen(
     3000,
     () => console.log('Example app listening on port 3000!')

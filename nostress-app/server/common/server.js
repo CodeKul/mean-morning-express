@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as bodyParser from 'body-parser';
 import * as http from 'http';
 import * as os from 'os';
+import * as io from 'socket.io'
 import cookieParser from 'cookie-parser';
 import swaggerify from './swagger';
 import l from './logger';
@@ -17,6 +18,10 @@ export default class ExpressServer {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cookieParser(process.env.SESSION_SECRET));
     app.use(Express.static(`${root}/public`));
+
+    io.on('connection', (socket) => {
+      console.log('a user connected');
+    });
   }
 
   router(routes) {

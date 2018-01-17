@@ -1,9 +1,19 @@
 const express = require('express')
 const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient
 
 const app = express()
 let logs = Array()
+let db = null
 
+MongoClient.connect('mongodb://localhost', (err, client) => {
+    if (client) {
+        db = client.db('test')
+        console.log(`connected to db`)
+    }
+    else console.log(err)
+
+})
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -28,6 +38,7 @@ app.use((req, res, next) => {
     // Pass to next layer of middleware
     next();
 });
+
 
 app.get(
     '/',
@@ -70,6 +81,27 @@ app.post(
         res.json(custRes)
     }
 )
+
+app.post(`/joke`, (req, res) => {
+    let rqObj = req.body;
+    if (db) {
+        db.collection('jokes').insertOne(rqObj, (err, rslt) => {
+            if (rslt) {
+                let rsOb = {
+                    msg: `Joke saved successfully`,
+                    sts: 200
+                }
+                console.log(`Joke saved`)
+                res.json(rsOb)
+            }
+            else {
+                console.log(`Error in saving joke`)
+                res.json({ msg: `Problem in Saving`, sts: 899 })
+            }
+        });
+    }
+    else res.json({ msg: `Problem in connecting with Db` })
+})
 
 app.get(
     `/rvws`,

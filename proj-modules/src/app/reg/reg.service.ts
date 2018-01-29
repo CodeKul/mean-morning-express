@@ -10,7 +10,7 @@ export class RegService {
   ) { }
 
   reg(rg: Reg) {
-    rg.id = 'salfjl'
+    rg.id = `${new Date().getMilliseconds()}`
 
     return this.http.post(
       `http://localhost:1337/registration`,

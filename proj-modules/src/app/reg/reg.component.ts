@@ -9,6 +9,8 @@ import { Reg } from './reg';
   providers: [RegService]
 })
 export class RegComponent implements OnInit {
+ 
+  emlPtrn = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
 
   constructor(
     private regService: RegService
@@ -20,7 +22,7 @@ export class RegComponent implements OnInit {
   onSubmit(frm: any) {
     console.log(frm)
 
-    this.regService.reg(frm as Reg).subscribe(
+    this.regService.reg(frm.value as Reg).subscribe(
       res => console.log(res),
       err => console.log(err),
       () => console.log(`On Complete`)

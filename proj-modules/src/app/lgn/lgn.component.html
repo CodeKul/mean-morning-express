@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="form-horizontal" >
+  <form class="form-horizontal" [formGroup]="lgnFrm" (ngSubmit)="onSubmit()" >
     <fieldset>
       <div id="legend">
         <legend class="">Login</legend>
@@ -11,9 +11,9 @@
         <div class="controls">
           <input 
             type="text" 
-            formControlName="eml" 
+            formControlName="usNm" 
             class="input-xlarge" >
-          <p class="help-block" >Please provide your E-mail</p>
+          <p class="help-block" *ngIf="lgnFrm.controls.usNm.invalid">Please provide your E-mail</p>
         </div>
       </div>
 
@@ -25,7 +25,8 @@
             type="password" 
             formControlName="pass" 
             class="input-xlarge" >
-          <p class="help-block">Password should be at least 4 characters</p>
+          <p class="help-block" *ngIf="lgnFrm.controls.pass.invalid">Password should be at least 4 characters</p>
+          <p class="help-block" *ngIf="lgnFrm.controls.pass.errors">{{lgnFrm.controls.pass.errors.msg}}</p>
         </div>
       </div>
 
@@ -34,7 +35,9 @@
         <div class="controls">
           <button 
             type="submit" 
-            class="btn btn-success">Login</button>
+            class="btn btn-success"
+            [disabled]="lgnFrm.invalid"
+            >Login</button>
         </div>
       </div>
     </fieldset>

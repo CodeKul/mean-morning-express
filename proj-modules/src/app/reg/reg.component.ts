@@ -1,5 +1,5 @@
 import { RegService } from './reg.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Reg } from './reg';
 
 @Component({
@@ -10,7 +10,16 @@ import { Reg } from './reg';
 })
 export class RegComponent implements OnInit {
  
+  ev : EventEmitter<string>
+  
+  cnfPass : string;
   emlPtrn = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+
+  // java - kotlin
+  // python - go
+  // js - typescript
+
+  //machine learning 
 
   constructor(
     private regService: RegService

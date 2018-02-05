@@ -9,13 +9,7 @@
         <!-- Username -->
         <label class="control-label" for="username">Name</label>
         <div class="controls">
-          <input 
-            type="text" 
-            name="nm" 
-            class="input-xlarge" 
-            #nm="ngModel" 
-            ngModel
-            required>
+          <input type="text" name="nm" class="input-xlarge" #nm="ngModel"  [(ngModel)]="myObj.nm" required>
           <p class="help-block" *ngIf="!nm.valid">Please enter your name</p>
         </div>
       </div>
@@ -24,13 +18,7 @@
         <!-- Username -->
         <label class="control-label" for="username">Username</label>
         <div class="controls">
-          <input 
-            type="text" 
-            name="usNm" 
-            class="input-xlarge" 
-            #usNm="ngModel" 
-            ngModel
-            required>
+          <input type="text" name="usNm" class="input-xlarge" #usNm="ngModel"  [(ngModel)]="myObj.usNm" required>
           <p class="help-block" *ngIf="!usNm.valid">Username can contain any letters or numbers, without spaces</p>
         </div>
       </div>
@@ -39,15 +27,7 @@
         <!-- E-mail -->
         <label class="control-label" for="email">E-mail</label>
         <div class="controls">
-          <input 
-            type="text" 
-            name="eml" 
-            class="input-xlarge" 
-            #eml="ngModel" 
-            ngModel
-            required
-            
-           >
+          <input type="text" name="eml" class="input-xlarge" #eml="ngModel" [(ngModel)]="myObj.eml" required>
           <p class="help-block" *ngIf="!eml.valid">Please provide your E-mail</p>
         </div>
       </div>
@@ -56,13 +36,7 @@
         <!-- Password-->
         <label class="control-label" for="password">Password</label>
         <div class="controls">
-          <input 
-            type="password" 
-            name="pass" 
-            class="input-xlarge" 
-            #pass="ngModel" 
-            ngModel
-            required>
+          <input type="password" name="pass" class="input-xlarge" #pass="ngModel" [(ngModel)]="myObj.pass" required>
           <p class="help-block" *ngIf="!pass.valid">Password should be at least 4 characters</p>
         </div>
       </div>
@@ -71,14 +45,7 @@
         <!-- Password -->
         <label class="control-label" for="password_confirm">Password (Confirm)</label>
         <div class="controls">
-          <input 
-            type="password" 
-            id="password_confirm" 
-            name="password_confirm" 
-            class="input-xlarge"
-            #cnf
-            (keyup)="cnfPass=cnf.value"
-            >
+          <input type="password" id="password_confirm" name="password_confirm" class="input-xlarge" #cnf (keyup)="cnfPass=cnf.value">
           <p class="help-block" *ngIf="pass.value!=cnfPass">Please confirm password</p>
         </div>
       </div>
@@ -86,10 +53,11 @@
       <div class="control-group">
         <!-- Button -->
         <div class="controls">
-          <button 
-            [disabled]="frm.invalid"
-            type="submit" 
-            class="btn btn-success">Register</button>
+
+          <input type="file" class="btn btn-success" value="Upload" (change)="onFileSelect($event)">
+
+          <button [disabled]="frm.invalid" type="submit" class="btn btn-success" >Register</button>
+
         </div>
       </div>
     </fieldset>

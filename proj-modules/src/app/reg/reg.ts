@@ -5,4 +5,5 @@ export class Reg {
     eml: string
     usNm: string
     pass: string
+    myPhoto : FileList
 }

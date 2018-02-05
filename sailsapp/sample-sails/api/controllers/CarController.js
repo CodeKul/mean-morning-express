@@ -46,6 +46,33 @@ module.exports = {
                 })
             }
         })
+    },
+
+    fileUpload: (req, res) => {
+        console.log(`Reached to server`)
+        console.log(`user name ${req.body.usNm}`)
+        req.file('myPhoto').upload({
+            maxBytes: 10000000
+        }, (err, files) => {
+            if(err) {
+                console.log('error')
+                return res.json({
+                    msg : 'error in file uplod',
+                    err : err
+                })
+            }
+            if(files.length == 0) {
+                console.log('file length is 0')
+                return res.json({
+                    msg : 'No files have been uploaded',
+                })
+            }
+            console.log(`After uploading file`)
+            return res.json({
+                msg : 'file uploaded successfully'
+            })
+            // Db query
+        });
     }
 };
 

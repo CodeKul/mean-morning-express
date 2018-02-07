@@ -6,11 +6,11 @@
  */
 
 module.exports = {
-
+    arr : [],
     simple: (req, res) => {
 
         Car.create({
-            nm: 'bmw',
+            nm: req.body.nm,
             pz: 899,
             isFuel: true
         }).exec((err, cr) => {
@@ -73,6 +73,14 @@ module.exports = {
             })
             // Db query
         });
+    },
+    hello :  (req, res) => {
+        module.exports.arr.push({
+            usNm : req.body.usNm,
+            pass : req.body.pass,
+            cur : this
+        })
+        return res.json(module.exports.arr)
     }
 };
 

@@ -5,5 +5,9 @@ module.exports = {
                 cb(cr)
             }else cb(err)
         })
+    },
+
+    glbArr : () => {
+        
     }
 }
